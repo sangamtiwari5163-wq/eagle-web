@@ -80,6 +80,56 @@
     counters.forEach(function (el) { observer.observe(el); });
   }
 
+  /* ---------- Services slider ---------- */
+  function initServicesSlider() {
+    var slider = document.querySelector(".services-slider");
+    if (!slider) return;
+    var track = slider.querySelector("[data-slider-track]");
+    var slides = Array.prototype.slice.call(track.children);
+    var dotsWrap = slider.querySelector("[data-slider-dots]");
+    var prevBtn = slider.querySelector("[data-slider-prev]");
+    var nextBtn = slider.querySelector("[data-slider-next]");
+    if (!slides.length) return;
+
+    /* Build dots */
+    var dots = slides.map(function (_, i) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.setAttribute("aria-label", "Go to service " + (i + 1));
+      b.addEventListener("click", function () {
+        track.scrollTo({ left: slides[i].offsetLeft - track.offsetLeft, behavior: "smooth" });
+      });
+      dotsWrap.appendChild(b);
+      return b;
+    });
+    dots[0].classList.add("is-active");
+
+    function setActiveDot() {
+      var trackCenter = track.scrollLeft + track.clientWidth / 2;
+      var closest = 0;
+      var closestDist = Infinity;
+      slides.forEach(function (slide, i) {
+        var slideCenter = slide.offsetLeft - track.offsetLeft + track.scrollLeft + slide.clientWidth / 2;
+        var dist = Math.abs(slideCenter - trackCenter);
+        if (dist < closestDist) { closestDist = dist; closest = i; }
+      });
+      dots.forEach(function (d, i) { d.classList.toggle("is-active", i === closest); });
+    }
+
+    var scrollTimer;
+    track.addEventListener("scroll", function () {
+      clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(setActiveDot, 80);
+    }, { passive: true });
+
+    function scrollByOne(dir) {
+      var amount = slides[0].clientWidth + 24; /* card width + gap */
+      track.scrollBy({ left: dir * amount, behavior: "smooth" });
+    }
+    if (prevBtn) prevBtn.addEventListener("click", function () { scrollByOne(-1); });
+    if (nextBtn) nextBtn.addEventListener("click", function () { scrollByOne(1); });
+  }
+
   /* ---------- Back to top ---------- */
   function initBackToTop() {
     var btn = document.querySelector(".back-to-top");
@@ -243,6 +293,7 @@
   document.addEventListener("DOMContentLoaded", function () {
     initReveal();
     initCounters();
+    initServicesSlider();
     initBackToTop();
     initNewsletter();
     initContactForm();

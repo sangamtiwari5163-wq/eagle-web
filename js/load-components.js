@@ -213,15 +213,29 @@
         var open = toggle.getAttribute("aria-expanded") === "true";
         toggle.setAttribute("aria-expanded", String(!open));
         nav.classList.toggle("is-open", !open);
-        document.body.style.overflow = !open ? "hidden" : "";
       });
 
       nav.querySelectorAll("a").forEach(function (link) {
         link.addEventListener("click", function () {
           toggle.setAttribute("aria-expanded", "false");
           nav.classList.remove("is-open");
-          document.body.style.overflow = "";
         });
+      });
+
+      /* Close the dropdown on outside click / Escape, since it's now a
+         small floating panel rather than a full-screen overlay. */
+      document.addEventListener("click", function (e) {
+        if (toggle.getAttribute("aria-expanded") !== "true") return;
+        if (nav.contains(e.target) || toggle.contains(e.target)) return;
+        toggle.setAttribute("aria-expanded", "false");
+        nav.classList.remove("is-open");
+      });
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && toggle.getAttribute("aria-expanded") === "true") {
+          toggle.setAttribute("aria-expanded", "false");
+          nav.classList.remove("is-open");
+          toggle.focus();
+        }
       });
     }
 
