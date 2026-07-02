@@ -1,0 +1,9 @@
+<svg width="220" height="56" viewBox="0 0 220 56" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Eagle Logistics &amp; Relocations">
+  <g>
+    <path d="M28 6 L48 28 L40 28 L40 48 L16 48 L16 28 L8 28 Z" fill="#D98E04"/>
+    <path d="M28 6 L28 22 L20 28 L8 28 Z" fill="#F2B23C"/>
+    <circle cx="28" cy="34" r="3.4" fill="#0B1D33"/>
+  </g>
+  <text x="62" y="28" font-family="'Space Grotesk', 'Arial', sans-serif" font-size="20" font-weight="700" fill="#FFFFFF">EAGLE</text>
+  <text x="62" y="46" font-family="'Inter', 'Arial', sans-serif" font-size="11.5" font-weight="500" letter-spacing="2" fill="#9FB7CE">LOGISTICS &amp; RELOCATIONS</text>
+</svg>

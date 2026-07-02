@@ -1,0 +1,21 @@
+{
+  "name": "Eagle Logistics & Relocations",
+  "short_name": "Eagle Logistics",
+  "description": "Global freight forwarding, warehousing, customs and relocation services.",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#F7F8FA",
+  "theme_color": "#0B1D33",
+  "icons": [
+    {
+      "src": "assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

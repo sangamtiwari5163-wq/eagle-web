@@ -1,0 +1,10 @@
+{
+  "name": "eagle-logistics-relocations",
+  "version": "1.0.0",
+  "description": "Production website for Eagle Logistics & Relocations — freight, warehousing, customs and relocation services.",
+  "private": true,
+  "scripts": {
+    "dev": "npx serve . -l 3000"
+  },
+  "license": "UNLICENSED"
+}
